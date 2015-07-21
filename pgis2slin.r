@@ -8,9 +8,9 @@ pgis2slin <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols = '*
   require(rgeos)
   
   if (is.null(other.cols))
-    {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt from ",table," where ",geom," is not null ",query,";""))
+    {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt from ",table," where ",geom," is not null ",query,";"))
     row.names(dfTemp) = dfTemp$tgid}
-  else {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt,",other.cols," from ",table," where ",geom," is not null ",query,";""))
+  else {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt,",other.cols," from ",table," where ",geom," is not null ",query,";"))
     row.names(dfTemp) = dfTemp$tgid}
   
   if (is.null(proj)){
