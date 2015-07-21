@@ -27,6 +27,8 @@ pgis2spol <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols='*')
     lin
   }))
   
+  Spol@proj4string<-slot(tt[[1]], "proj4string")
+  
   if (is.null(other.cols)){ return(Spol) } 
   else {try(dfTemp[geom]<-NULL)
     try(dfTemp['wkt']<-NULL)
