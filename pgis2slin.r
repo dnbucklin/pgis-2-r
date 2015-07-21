@@ -26,6 +26,8 @@ pgis2slin <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols = '*
     slot(lin, "ID") <- slot(slot(tt[[i]], "lines")[[1]],"ID")  ##assign original ID to Line
     lin
   }))
+  
+  Sline@proj4string<-slot(tt[[1]], "proj4string")
 
   if (is.null(other.cols)){ return(Sline) } 
   else {try(dfTemp[geom]<-NULL)
