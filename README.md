@@ -11,4 +11,4 @@ conn<-dbConnect(drv,dbname='dbname',host='host',port='5432',user='user',password
 
 Table name, geometry column (default 'geom'), and geometry ID column (default 'gid') are required arguments. Projection should be entered as the EPSG code number (but can be left null). The other.cols argument allows to select a list of columns from the table to attach as a data frame in R (default is all columns). If this is set to null the function will return a Spatial-only object (no data frame).
 
-An optional 'query' argument can send additional SQL (`AND`,`LIMIT`,`ORDER BY`), etc. to modify the table selection. Default selection is all non-null geometries.
+An optional 'query' argument can send additional SQL (`AND`,`LIMIT`,`ORDER BY`), etc. to modify the table selection. Note that character values will need to be escaped out using R syntax (e.g., `\'text\'`. Default selection is all non-null geometries.
