@@ -1,16 +1,16 @@
 # Function creates a new SpatialPolygons or SpatialPolygonsDataFrame object from a table with geometry in Postgresql. 
 # Requires that a connection already is established to the database using the dbDriver() and dbConnect() functions in the package RPostgreSQL.
 
-pgis2spol <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols='*') {
+pgis2spol <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols='*',query=NULL) {
 
   require(sp)
   require(rgdal)
   require(rgeos)
   
   if (is.null(other.cols))
-  {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt from ",table," where ",geom," is not null;"))
+  {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt from ",table," where ",geom," is not null ",query,";"))
   row.names(dfTemp) = dfTemp$tgid}
-  else {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt,",other.cols," from ",table," where ",geom," is not null;"))
+  else {dfTemp<-dbGetQuery(conn,paste0("select ",gid," as tgid,st_astext(",geom,") as wkt,",other.cols," from ",table," where ",geom," is not null ",query,";"))
   row.names(dfTemp) = dfTemp$tgid}
   
   if (is.null(proj)){
