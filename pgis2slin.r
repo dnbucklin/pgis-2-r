@@ -1,7 +1,7 @@
 # Function creates a new SpatialLines or SpatialLinesDataFrame object from a table with geometry in Postgresql. 
 # Requires that a connection already is established to the database using the dbDriver() and dbConnect() functions in the package RPostgreSQL.
 
-wkt2slin <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols = '*') {
+pgis2slin <- function(conn,table,geom='geom',gid='gid',proj=NULL,other.cols = '*') {
 
   require(sp)
   require(rgdal)
