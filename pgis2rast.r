@@ -1,4 +1,4 @@
-pgis2rast <- function(conn,table,rast='rast',proj=NULL,prec=9, NSEW=c(NULL,NULL,NULL,NULL)){
+pgis2rast <- function(conn,table,rast='rast',proj=NULL,digits=9, NSEW=c(NULL,NULL,NULL,NULL)){
   
   require(raster)
   require(rgdal)
@@ -15,5 +15,5 @@ if (is.null(NSEW)) {trast<-dbGetQuery(con,paste0("SELECT ST_X(ST_Centroid((gv).g
   EPSG<-make_EPSG()
   p4s<-EPSG[which(EPSG$code == proj), "prj4"]
   
-  return(rasterFromXYZ(trast,crs=CRS(p4s),digits=prec))
+  return(rasterFromXYZ(trast,crs=CRS(p4s),digits=digits))
 }
