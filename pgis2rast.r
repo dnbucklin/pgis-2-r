@@ -12,8 +12,9 @@ if (is.null(NSEW)) {trast<-dbGetQuery(conn,paste0("SELECT ST_X(ST_Centroid((gv).
   ",NSEW[3]," ",NSEW[2],",",NSEW[3]," ",NSEW[1],",",NSEW[4]," ",NSEW[1],"))'),",proj,"))) a;"))
   }
   
+  if(!is.null(proj)) {
   EPSG<-make_EPSG()
   p4s<-EPSG[which(EPSG$code == proj), "prj4"]
-  
   return(rasterFromXYZ(trast,crs=CRS(p4s),digits=digits))
+  } else {return(rasterFromXYZ(trast,digits=digits))}
 }
