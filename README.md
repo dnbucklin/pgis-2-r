@@ -1,4 +1,7 @@
 # pgis-2-r
+
+NOTE: these functions have been updated and moved to a package (pgis2r).
+
 Functions for importing spatial tables from Postgresql databases in R
 
 These functions covert spatial tables in Postgresql databases to Spatial* (`sp` package) or Raster (`raster` package) objects in R. They require a connection object to the Postgresql (using `RPostgreSQL`) database as an argument, e.g.:
